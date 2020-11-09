@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  background: white;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+
+  svg {
+    fill: var(--accentColor);
+  }
+}
+
+.user {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accentColor);
+  display: block;
+  border: 2px solid white;
+}

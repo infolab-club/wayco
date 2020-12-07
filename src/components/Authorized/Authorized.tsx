@@ -1,19 +1,53 @@
 import React, { useState } from 'react'
 import { Drawer } from 'antd'
+import { VerticalAlignTopOutlined, CloseOutlined } from '@ant-design/icons'
+import styles from './authorized.module.scss'
 import Map from './Map'
+import Cafe from './Cafe'
 
-const Authorized = () => {
+interface Props {
+  children?: React.ReactNode
+}
+
+const Authorized = (props: Props) => {
   const [showDrawer, setShowDrawer] = useState(false)
+  const [fullscreenDrawer, setFullscreenDrawer] = useState(false)
+
+  const handleSetFullscreen = (evt: React.MouseEvent) => {
+    evt.stopPropagation()
+    setFullscreenDrawer(true)
+  }
+
+  const handleDrawerClose = () => {
+    setShowDrawer(false)
+  }
+
+  const handleDrawerOpen = () => {
+    setFullscreenDrawer(false)
+    setShowDrawer(true)
+  }
+
   return (
     <>
-      <Map onMarkerClick={() => setShowDrawer(true)} />
+      {props.children}
+      <Map onMarkerClick={handleDrawerOpen} />
       <Drawer
-        title="Basic Drawer"
-        placement="left"
+        title="Название кофейни"
+        placement="bottom"
+        className={fullscreenDrawer ? styles.fullscreenDrawer : styles.drawer}
         closable={true}
-        onClose={() => setShowDrawer(false)}
+        closeIcon={
+          fullscreenDrawer ? (
+            <CloseOutlined onClick={handleDrawerClose} />
+          ) : (
+            <VerticalAlignTopOutlined onClick={handleSetFullscreen} />
+          )
+        }
+        onClose={handleDrawerClose}
         visible={showDrawer}
-      />
+      >
+        <Cafe />
+      </Drawer>
     </>
   )
 }

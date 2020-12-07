@@ -1,0 +1,10 @@
+.drawer {
+}
+
+.fullscreenDrawer {
+  
+  :global(.ant-drawer-content-wrapper) {
+    transition: height .3s;
+    height: 100% !important;
+  }
+}

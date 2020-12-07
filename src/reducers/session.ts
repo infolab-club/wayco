@@ -1,29 +1,57 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit'
+import api from '../api'
+import { ReduxStatus } from '../config'
 
-/**
- "idle" (fetching not started yet)
- "loading" (currently fetching the session)
- "success" (session fetched successfully)
- "failure" (session failed to fetch)
- */
+interface InitialState {
+  sessionStatus: ReduxStatus
+  authorized?: boolean
+}
+
+interface Token {
+  access: string
+  refresh: string
+}
 
 export const sessionSlice = createSlice({
   name: `session`,
   initialState: {
-    status: `idle`,
-    value: 0,
-  },
+    sessionStatus: ReduxStatus.idle,
+  } as InitialState,
   reducers: {
-    doNothing: (state) => {
-      state.value++
+    setStatus: (state, action) => {
+      state.sessionStatus = action.payload
     },
   },
 })
 
-export const { doNothing } = sessionSlice.actions
+const { setStatus } = sessionSlice.actions
 
-export const doAsync = () => (dispatch: Dispatch) => {
-  setTimeout(() => dispatch(doNothing()))
+export const postRefreshToken = () => async (dispatch: Dispatch) => {
+  const token: Token = JSON.parse(localStorage.getItem(`token`) || `{}`)
+  try {
+    const { data } = await api.post(`/accounts/token/refresh`, {
+      refresh: token.refresh,
+    })
+    api.defaults.headers.common.Authorization = `Bearer ${data.access}`
+    dispatch(setStatus(ReduxStatus.success))
+    localStorage.setItem(
+      `token`,
+      JSON.stringify({ ...token, access: data.access }),
+    )
+  } catch (err) {
+    dispatch(setStatus(ReduxStatus.error))
+    console.log(new Error(err))
+  }
+}
+
+export const postAuth = (values: unknown) => async (dispatch: Dispatch) => {
+  const { data } = await api.post(`/accounts/token`, values)
+  api.defaults.headers.common.Authorization = `Bearer ${data.access}`
+  dispatch(setStatus(ReduxStatus.success))
+  localStorage.setItem(
+    `token`,
+    JSON.stringify(data),
+  )
 }
 
 export default sessionSlice.reducer

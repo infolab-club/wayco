@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Authorized from './components/Authorized/Authorized'
 import Unauthorized from './components/Unauthorized/Unauthorized'

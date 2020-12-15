@@ -1,12 +1,8 @@
 import axios from 'axios'
 import { BASE_URL } from './config'
+import { getToken } from './helpers/getToken'
 
-interface Token {
-  access: string
-  refresh: string
-}
-
-const token: Token = JSON.parse(localStorage.getItem(`token`) || `{}`)
+const token = getToken()
 
 const api = axios.create({
   baseURL: BASE_URL,

@@ -1,6 +1,7 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit'
 import api from '../api'
 import { ReduxStatus } from '../config'
+import { getToken } from '../helpers/getToken'
 
 interface InitialState {
   sessionStatus: ReduxStatus
@@ -27,12 +28,18 @@ export const sessionSlice = createSlice({
 const { setStatus } = sessionSlice.actions
 
 export const postRefreshToken = () => async (dispatch: Dispatch) => {
-  const token: Token = JSON.parse(localStorage.getItem(`token`) || `{}`)
+  const token = getToken()
+
+  if (!token.refresh) {
+    dispatch(setStatus(ReduxStatus.error))
+    return
+  }
+
   try {
     const { data } = await api.post(`/accounts/token/refresh`, {
       refresh: token.refresh,
     })
-    api.defaults.headers.common.Authorization = `Bearer ${data.access}`
+    api.defaults.headers.Authorization = `Bearer ${data.access}`
     dispatch(setStatus(ReduxStatus.success))
     localStorage.setItem(
       `token`,
@@ -40,18 +47,15 @@ export const postRefreshToken = () => async (dispatch: Dispatch) => {
     )
   } catch (err) {
     dispatch(setStatus(ReduxStatus.error))
-    console.log(new Error(err))
+    console.error(err)
   }
 }
 
 export const postAuth = (values: unknown) => async (dispatch: Dispatch) => {
   const { data } = await api.post(`/accounts/token`, values)
-  api.defaults.headers.common.Authorization = `Bearer ${data.access}`
+  api.defaults.headers.Authorization = `Bearer ${data.access}`
   dispatch(setStatus(ReduxStatus.success))
-  localStorage.setItem(
-    `token`,
-    JSON.stringify(data),
-  )
+  localStorage.setItem(`token`, JSON.stringify(data))
 }
 
 export default sessionSlice.reducer

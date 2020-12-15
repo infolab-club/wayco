@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GoogleMapReact from 'google-map-react'
 import styles from './map.module.scss'
 import { MAPS_API_KEY } from '../../../config'
 import Marker from './Marker'
 import MapsStyle from './mapsStyle'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCafes } from '../../../reducers/cafes'
+import { RootState } from '../../../index'
 
 interface Props {
   onMarkerClick: () => void
@@ -17,9 +20,18 @@ interface UserLocation {
 
 const Map = (props: Props) => {
   const { onMarkerClick } = props
+  const { cafes } = useSelector((state: RootState) => state.cafes)
+
+  const dispatch = useDispatch()
+
   const [userLocation, setUserLocation] = useState<UserLocation>(
     {} as UserLocation,
   )
+
+  useEffect(() => {
+    dispatch(getCafes())
+  }, [dispatch])
+
   window.navigator.geolocation.getCurrentPosition((position) =>
     setUserLocation(position.coords),
   )
@@ -45,18 +57,15 @@ const Map = (props: Props) => {
             lng={userLocation.longitude}
           />
         )}
-        <Marker
-          type="cafe"
-          lat={59.9385849}
-          lng={30.3147994}
-          onClick={onMarkerClick}
-        />
-        <Marker
-          type="cafe"
-          lat={59.862742}
-          lng={30.318867}
-          onClick={onMarkerClick}
-        />
+        {cafes?.map((cafe) => (
+          <Marker
+            key={cafe.id}
+            type="cafe"
+            lat={parseInt(cafe.latitude)}
+            lng={parseInt(cafe.longitude)}
+            onClick={onMarkerClick}
+          />
+        ))}
       </GoogleMapReact>
     </div>
   )

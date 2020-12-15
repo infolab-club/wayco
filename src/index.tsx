@@ -5,10 +5,11 @@ import App from './App'
 import { configureStore } from '@reduxjs/toolkit'
 import { BrowserRouter } from 'react-router-dom'
 import session from './reducers/session'
+import cafes from './reducers/cafes'
 import { Provider } from 'react-redux'
 import './index.scss'
 
-const store = configureStore({ reducer: { session } })
+const store = configureStore({ reducer: { session, cafes } })
 
 ReactDOM.render(
   <BrowserRouter>

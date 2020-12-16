@@ -7,10 +7,7 @@ import MapsStyle from './mapsStyle'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCafes } from '../../../reducers/cafes'
 import { RootState } from '../../../index'
-
-interface Props {
-  onMarkerClick: () => void
-}
+import { useHistory } from 'react-router-dom'
 
 interface UserLocation {
   latitude: number
@@ -18,11 +15,11 @@ interface UserLocation {
   accuracy?: number
 }
 
-const Map = (props: Props) => {
-  const { onMarkerClick } = props
+const Map = () => {
   const { cafes } = useSelector((state: RootState) => state.cafes)
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const [userLocation, setUserLocation] = useState<UserLocation>(
     {} as UserLocation,
@@ -44,11 +41,11 @@ const Map = (props: Props) => {
           fullscreenControl: false,
           styles: MapsStyle,
         }}
-        defaultCenter={{
+        center={{
           lat: userLocation.latitude || 59.9385849,
           lng: userLocation.longitude || 30.3147994,
         }}
-        defaultZoom={15}
+        defaultZoom={5}
       >
         {userLocation.accuracy && (
           <Marker
@@ -63,7 +60,7 @@ const Map = (props: Props) => {
             type="cafe"
             lat={parseInt(cafe.latitude)}
             lng={parseInt(cafe.longitude)}
-            onClick={onMarkerClick}
+            onClick={() => history.push(`/cafes/${cafe.id}`)}
           />
         ))}
       </GoogleMapReact>

@@ -4,7 +4,7 @@
   display: block;
   overflow: hidden;
   margin-bottom: 16px;
-  
+
   img {
     height: 100%;
     object-fit: cover;
@@ -13,4 +13,12 @@
 
 .icon {
   margin-right: 16px;
+}
+
+.fullscreenDrawer {
+
+  :global(.ant-drawer-content-wrapper) {
+    transition: height .3s;
+    height: 100% !important;
+  }
 }

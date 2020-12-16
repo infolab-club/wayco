@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Form, Input } from 'antd'
+import { Link } from 'react-router-dom'
 import styles from './login.module.scss'
 import { useDispatch } from 'react-redux'
+import { setHeader } from '../../../reducers/header'
 import { postAuth } from '../../../reducers/session'
 
 const Login = () => {
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(setHeader({ title: `Вход` }))
+  }, [dispatch])
 
   const handleFinish = (values: unknown) => {
     dispatch(postAuth(values))
@@ -26,7 +32,7 @@ const Login = () => {
       </Form.Item>
       <Form.Item>
         <Button size="large" block>
-          Регистрация
+          <Link to="/registration">Регистрация</Link>
         </Button>
       </Form.Item>
     </Form>

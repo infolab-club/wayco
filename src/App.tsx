@@ -8,6 +8,7 @@ import { RootState } from './index'
 import { ReduxStatus } from './config'
 import { postRefreshToken } from './reducers/session'
 import Cafe from './components/Authorized/Cafe'
+import Registration from './components/Unauthorized/Registration/Registration'
 
 function App() {
   const { sessionStatus } = useSelector((state: RootState) => state.session)
@@ -38,6 +39,9 @@ function App() {
             <Redirect from="/:url*(/+)" to={location.pathname.slice(0, -1)} />
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/registration">
+              <Registration />
             </Route>
             <Redirect to="/login" />
           </Switch>

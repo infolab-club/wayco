@@ -8,11 +8,6 @@ interface InitialState {
   authorized?: boolean
 }
 
-interface Token {
-  access: string
-  refresh: string
-}
-
 export const sessionSlice = createSlice({
   name: `session`,
   initialState: {
@@ -30,7 +25,7 @@ const { setStatus } = sessionSlice.actions
 export const postRefreshToken = () => async (dispatch: Dispatch) => {
   const token = getToken()
 
-  if (!token.refresh) {
+  if (!token) {
     dispatch(setStatus(ReduxStatus.error))
     return
   }

@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  :global(.ant-menu-item) {
+    display: flex;
+    align-items: center;
+    height: 48px;
+
+    :global(.anticon) {
+      font-size: 18px;
+    }
+  }
+}

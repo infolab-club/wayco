@@ -15,10 +15,46 @@
   margin-right: 16px;
 }
 
+.dataWrapper {
+  display: grid;
+  grid-gap: 16px;
+}
+
+.drawer {
+  :global(.ant-drawer-wrapper-body) {
+    &::after {
+      content: '';
+      position: absolute;
+      height: 50%;
+      width: 100%;
+      background: linear-gradient(to top, white, transparent);
+      bottom: 0;
+      opacity: 1;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+  }
+
+  :global(.ant-drawer-body) {
+    overflow: hidden;
+  }
+}
+
 .fullscreenDrawer {
+  composes: drawer;
+
+  :global(.ant-drawer-body) {
+    overflow: auto;
+  }
+
+  :global(.ant-drawer-wrapper-body) {
+    &::after {
+      opacity: 0;
+    }
+  }
 
   :global(.ant-drawer-content-wrapper) {
-    transition: height .3s;
+    transition: height 0.3s;
     height: 100% !important;
   }
 }

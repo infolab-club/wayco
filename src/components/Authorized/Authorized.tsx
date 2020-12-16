@@ -1,5 +1,7 @@
 import React from 'react'
+import styles from './authorized.module.scss'
 import Map from './Map'
+import DockBar from './DockBar/DockBar'
 
 interface Props {
   children?: React.ReactNode
@@ -8,8 +10,13 @@ interface Props {
 const Authorized = (props: Props) => {
   return (
     <>
-      <Map />
-      {props.children}
+      <div className={styles.content}>
+        <Map />
+        {props.children}
+      </div>
+      <div className={styles.dockBar}>
+        <DockBar />
+      </div>
     </>
   )
 }

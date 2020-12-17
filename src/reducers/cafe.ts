@@ -7,7 +7,7 @@ interface InitialState {
 }
 
 export const cafeSlice = createSlice({
-  name: `cafes`,
+  name: `cafe`,
   initialState: {} as InitialState,
   reducers: {
     setCafe: (state, action) => {

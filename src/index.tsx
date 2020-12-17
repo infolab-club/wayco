@@ -7,11 +7,14 @@ import { BrowserRouter } from 'react-router-dom'
 import session from './reducers/session'
 import cafes from './reducers/cafes'
 import cafe from './reducers/cafe'
+import menu from './reducers/menu'
 import header from './reducers/header'
 import { Provider } from 'react-redux'
 import './index.scss'
 
-const store = configureStore({ reducer: { session, cafes, cafe, header } })
+const store = configureStore({
+  reducer: { session, cafes, cafe, header, menu },
+})
 
 ReactDOM.render(
   <BrowserRouter>

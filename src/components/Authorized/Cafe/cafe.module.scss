@@ -36,6 +36,8 @@
   }
 
   :global(.ant-drawer-body) {
+    padding: 0 24px;
+    margin-bottom: 16px;
     overflow: hidden;
   }
 }
@@ -57,4 +59,9 @@
     transition: height 0.3s;
     height: 100% !important;
   }
+}
+
+.title {
+  margin: 0;
+  padding: 16px 0;
 }

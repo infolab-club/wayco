@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Drawer, Rate, Typography } from 'antd'
-import {
-  CloseOutlined,
-  EnvironmentOutlined,
-  VerticalAlignTopOutlined,
-  FileTextOutlined,
-} from '@ant-design/icons'
+import { Drawer } from 'antd'
+import { CloseOutlined, VerticalAlignTopOutlined } from '@ant-design/icons'
 import { useParams, useHistory } from 'react-router-dom'
 import styles from './cafe.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCafe } from '../../../reducers/cafe'
 import { RootState } from '../../../index'
+import Info from './Info/Info'
+import Menu from './Menu/Menu'
 
 interface ParamTypes {
   cafeID: string
@@ -59,16 +56,10 @@ const Cafe = () => {
       style={{ position: 'absolute' }}
     >
       {/*<Image className={styles.image} src="error" fallback="No image" />*/}
-      <div className={styles.dataWrapper}>
-        <Rate allowHalf value={cafe?.average_rating} />
-        <Typography.Text>
-          <EnvironmentOutlined className={styles.icon} /> {cafe?.address}
-        </Typography.Text>
-        <Typography.Text>
-          <FileTextOutlined className={styles.icon} /> {cafe?.description}
-        </Typography.Text>
-        <Button size="large">Сделать заказ</Button>
-      </div>
+      <h3 className={styles.title}>Инфо</h3>
+      <Info />
+      <h3 className={styles.title}>Меню</h3>
+      <Menu />
     </Drawer>
   )
 }

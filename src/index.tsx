@@ -1,5 +1,5 @@
 import React from 'react'
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.less'
 import ReactDOM from 'react-dom'
 import App from './App'
 import { configureStore } from '@reduxjs/toolkit'

@@ -67,7 +67,7 @@ const Cafe = () => {
         <Typography.Text>
           <FileTextOutlined className={styles.icon} /> {cafe?.description}
         </Typography.Text>
-        <Button>Сделать заказ</Button>
+        <Button size="large">Сделать заказ</Button>
       </div>
     </Drawer>
   )

@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   justify-content: space-between;
+  background: #1f1f1f;
 
   :global(.ant-menu-item) {
     display: flex;

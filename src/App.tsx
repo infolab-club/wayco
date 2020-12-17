@@ -26,7 +26,7 @@ function App() {
         <Authorized>
           <Switch>
             <Redirect from="/:url*(/+)" to={location.pathname.slice(0, -1)} />
-            <Route path="/cafes/:cafeID">
+            <Route path="/:tab(cafes)/:cafeID">
               <Cafe />
             </Route>
             <Redirect to="/cafes" />

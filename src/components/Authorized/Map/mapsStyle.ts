@@ -10,7 +10,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 32,
+        lightness: 36,
       },
     ],
   },
@@ -25,7 +25,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 8,
+        lightness: 12,
       },
     ],
   },
@@ -46,7 +46,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 12,
+        lightness: 16,
       },
     ],
   },
@@ -58,7 +58,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 9,
+        lightness: 13,
       },
       {
         weight: 1.2,
@@ -73,7 +73,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 12,
+        lightness: 16,
       },
     ],
   },
@@ -85,7 +85,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 13,
+        lightness: 17,
       },
     ],
   },
@@ -97,7 +97,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 9,
+        lightness: 13,
       },
     ],
   },
@@ -109,7 +109,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 21,
+        lightness: 25,
       },
       {
         weight: 0.2,
@@ -124,7 +124,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 10,
+        lightness: 14,
       },
     ],
   },
@@ -136,7 +136,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 8,
+        lightness: 12,
       },
     ],
   },
@@ -148,7 +148,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 11,
+        lightness: 15,
       },
     ],
   },
@@ -160,7 +160,7 @@ const MapsStyle = [
         color: '#000000',
       },
       {
-        lightness: 9,
+        lightness: 13,
       },
     ],
   },

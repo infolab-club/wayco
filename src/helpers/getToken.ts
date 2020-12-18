@@ -5,7 +5,7 @@ interface GetToken {
   }
 }
 
-export const getToken: GetToken = () => {
+const getToken: GetToken = () => {
   try {
     return JSON.parse(localStorage.getItem(`token`) as string)
   } catch (err) {
@@ -13,3 +13,5 @@ export const getToken: GetToken = () => {
     return
   }
 }
+
+export default getToken

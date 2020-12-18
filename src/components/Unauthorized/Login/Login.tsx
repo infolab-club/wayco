@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form, Input } from 'antd'
 import { Link } from 'react-router-dom'
 import styles from './login.module.scss'
@@ -8,13 +8,15 @@ import { postAuth } from '../../../reducers/session'
 
 const Login = () => {
   const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     dispatch(setHeader({ title: `Вход` }))
   }, [dispatch])
 
-  const handleFinish = (values: unknown) => {
-    dispatch(postAuth(values))
+  const handleFinish = async (values: unknown) => {
+    setLoading(true)
+    await dispatch(postAuth(values))
   }
 
   return (
@@ -26,7 +28,13 @@ const Login = () => {
         <Input type="password" size="large" />
       </Form.Item>
       <Form.Item>
-        <Button size="large" type="primary" htmlType="submit" block>
+        <Button
+          block
+          size="large"
+          type="primary"
+          htmlType="submit"
+          loading={loading}
+        >
           Войти
         </Button>
       </Form.Item>

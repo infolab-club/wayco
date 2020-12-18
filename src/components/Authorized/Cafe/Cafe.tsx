@@ -4,10 +4,11 @@ import { CloseOutlined, VerticalAlignTopOutlined } from '@ant-design/icons'
 import { useParams, useHistory } from 'react-router-dom'
 import styles from './cafe.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCafe } from '../../../reducers/cafe'
+import { getCafe, setCafe } from '../../../reducers/cafe'
 import { RootState } from '../../../index'
 import Info from './Info/Info'
 import Menu from './Menu/Menu'
+import Map from './Map'
 
 interface ParamTypes {
   cafeID: string
@@ -20,12 +21,11 @@ const Cafe = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  useEffect(() => {
-    dispatch(getCafe(parseInt(cafeID)))
-  }, [dispatch, cafeID])
-
-  const [showDrawer, setShowDrawer] = useState(true)
   const [fullscreenDrawer, setFullscreenDrawer] = useState(false)
+
+  useEffect(() => {
+    if (cafeID) dispatch(getCafe(parseInt(cafeID)))
+  }, [dispatch, cafeID])
 
   const handleSetFullscreen = (evt: React.MouseEvent) => {
     evt.stopPropagation()
@@ -33,34 +33,37 @@ const Cafe = () => {
   }
 
   const handleDrawerClose = () => {
-    setShowDrawer(false)
+    dispatch(setCafe(undefined))
     history.push(`/cafes`)
   }
 
   return (
-    <Drawer
-      title={cafe?.name}
-      placement="bottom"
-      className={fullscreenDrawer ? styles.fullscreenDrawer : styles.drawer}
-      closable={true}
-      closeIcon={
-        fullscreenDrawer ? (
-          <CloseOutlined onClick={handleDrawerClose} />
-        ) : (
-          <VerticalAlignTopOutlined onClick={handleSetFullscreen} />
-        )
-      }
-      onClose={handleDrawerClose}
-      visible={showDrawer}
-      getContainer={false}
-      style={{ position: 'absolute' }}
-    >
-      {/*<Image className={styles.image} src="error" fallback="No image" />*/}
-      <h3 className={styles.title}>Инфо</h3>
-      <Info />
-      <h3 className={styles.title}>Меню</h3>
-      <Menu />
-    </Drawer>
+    <>
+      <Map />
+      <Drawer
+        title={cafe?.name || ` `}
+        placement="bottom"
+        className={fullscreenDrawer ? styles.fullscreenDrawer : styles.drawer}
+        closable={true}
+        closeIcon={
+          fullscreenDrawer ? (
+            <CloseOutlined onClick={handleDrawerClose} />
+          ) : (
+            <VerticalAlignTopOutlined onClick={handleSetFullscreen} />
+          )
+        }
+        onClose={handleDrawerClose}
+        visible={!!cafe}
+        getContainer={false}
+        style={{ position: 'absolute' }}
+      >
+        {/*<Image className={styles.image} src="error" fallback="No image" />*/}
+        <h3 className={styles.title}>Инфо</h3>
+        <Info />
+        <h3 className={styles.title}>Меню</h3>
+        <Menu />
+      </Drawer>
+    </>
   )
 }
 

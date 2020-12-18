@@ -48,3 +48,14 @@ export interface MenuItem {
     }[]
   }[]
 }
+
+export interface Order {
+  cafe: number
+  ordered_products: OrderItem[]
+}
+
+export interface OrderItem {
+  quantity: number
+  product: number
+  chosen_options: number[]
+}

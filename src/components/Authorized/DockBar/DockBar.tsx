@@ -7,16 +7,17 @@ import {
   UserOutlined,
 } from '@ant-design/icons'
 import styles from './dockBar.module.scss'
-import { useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 const DockBar = () => {
-  const location = useLocation()
+  const history = useHistory()
 
   return (
     <Menu
       mode="horizontal"
       className={styles.wrapper}
-      selectedKeys={[location.pathname.split(`/`)[1]]}
+      selectedKeys={[history.location.pathname.split(`/`)[1]]}
+      onClick={({ key }) => history.push(`/${key}`)}
     >
       <Menu.Item key="cafes" icon={<EnvironmentOutlined />} />
       <Menu.Item key="cart" icon={<ShoppingCartOutlined />} />

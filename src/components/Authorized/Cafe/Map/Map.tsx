@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import GoogleMapReact from 'google-map-react'
 import styles from './map.module.scss'
-import { MAPS_API_KEY } from '../../../config'
+import { MAPS_API_KEY } from '../../../../config'
 import Marker from './Marker'
 import MapsStyle from './mapsStyle'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCafes } from '../../../reducers/cafes'
-import { RootState } from '../../../index'
+import { getCafes } from '../../../../reducers/cafes'
+import { RootState } from '../../../../index'
 import { useHistory } from 'react-router-dom'
 
 interface UserLocation {

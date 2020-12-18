@@ -6,6 +6,7 @@ import getToken from '../helpers/getToken'
 interface InitialState {
   sessionStatus: ReduxStatus
   authorized?: boolean
+  productsCount?: number
 }
 
 export const sessionSlice = createSlice({
@@ -17,10 +18,13 @@ export const sessionSlice = createSlice({
     setStatus: (state, action) => {
       state.sessionStatus = action.payload
     },
+    setProductsCount: (state, action) => {
+      state.productsCount = action.payload
+    },
   },
 })
 
-const { setStatus } = sessionSlice.actions
+export const { setStatus, setProductsCount } = sessionSlice.actions
 
 export const postRefreshToken = () => async (dispatch: Dispatch) => {
   const token = getToken()

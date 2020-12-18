@@ -10,6 +10,7 @@ import { postRefreshToken } from './reducers/session'
 import Cafe from './components/Authorized/Cafe'
 import Registration from './components/Unauthorized/Registration/Registration'
 import Cart from './components/Authorized/Cart/Cart'
+import Order from './components/Authorized/Order/Order'
 
 function App() {
   const { sessionStatus } = useSelector((state: RootState) => state.session)
@@ -27,11 +28,14 @@ function App() {
         <Authorized>
           <Switch>
             <Redirect from="/:url*(/+)" to={location.pathname.slice(0, -1)} />
-            <Route path="/cafes/:cafeID?">
+            <Route exact path="/cafes/:cafeID?">
               <Cafe />
             </Route>
-            <Route path="/cart">
+            <Route exact path="/cart">
               <Cart />
+            </Route>
+            <Route exact path="/cart/:cafeID">
+              <Order />
             </Route>
             <Redirect to="/cafes" />
           </Switch>

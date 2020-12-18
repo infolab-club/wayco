@@ -38,7 +38,7 @@ const Cafe = () => {
   }
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <Map />
       <Drawer
         title={cafe?.name || ` `}
@@ -63,7 +63,7 @@ const Cafe = () => {
         <h3 className={styles.title}>Меню</h3>
         <Menu />
       </Drawer>
-    </>
+    </div>
   )
 }
 

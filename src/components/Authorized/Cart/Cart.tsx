@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import styles from './cart.module.scss'
 import { Card, PageHeader } from 'antd'
+import { getCafes } from '../../../reducers/cafes'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../../index'
+import getOrders from '../../../helpers/getOrders'
 
 const Cart = () => {
+  const { cafes } = useSelector((state: RootState) => state.cafes)
+
+  const dispatch = useDispatch()
+  const orders = getOrders()
+
+  useEffect(() => {
+    dispatch(getCafes())
+  }, [dispatch])
+
   return (
     <>
       <PageHeader title="Корзина" />
       <div className={styles.wrapper}>
-        <Card>askdamsdlkas</Card>
+        {orders.map((order) => (
+          <Link to={`/cart/${order.cafe}`} key={order.cafe}>
+            <Card>
+              <h4>{cafes?.find((cafe) => cafe.id === order.cafe)?.name}</h4>
+            </Card>
+          </Link>
+        ))}
       </div>
     </>
   )

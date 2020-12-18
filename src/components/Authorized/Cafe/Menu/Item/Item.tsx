@@ -3,8 +3,10 @@ import { Button, Form, InputNumber, Modal, Select } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../../../index'
 import { getMenuItem } from '../../../../../reducers/menu'
+import { setProductsCount } from '../../../../../reducers/session'
 import { OrderItem } from '../../../../../types'
 import addOrderItem from '../../../../../helpers/addOrderItem'
+import getOrders from '../../../../../helpers/getOrders'
 
 interface Props {
   cafeID?: number
@@ -27,12 +29,23 @@ const Item = (props: Props) => {
 
   const handleSubmit = (values: OrderItem) => {
     const { quantity, ...rest } = values
-    if (cafeID && itemID)
+    if (cafeID && itemID) {
       addOrderItem(cafeID, {
         quantity: quantity,
         product: itemID,
-        chosen_options: Object.values(rest),
+        chosen_options: Object.entries(rest).map(([key, value], index) => ({
+          name: key,
+          value: {
+            id: value,
+            name: menuItem?.options
+              .find((option) => option.id === index + 1)
+              ?.choices.find((choice) => choice.id === value)?.name as string,
+          },
+        })),
       })
+      const orders = getOrders()
+      dispatch(setProductsCount(orders.length && orders[0].ordered_products.length))
+    }
   }
 
   return (
@@ -52,7 +65,7 @@ const Item = (props: Props) => {
         {menuItem?.options.map((option) => (
           <Form.Item
             label={option.name}
-            name={option.id}
+            name={option.name}
             key={option.id}
             initialValue={option.choices.find((choice) => choice.default)?.id}
           >

@@ -57,5 +57,11 @@ export interface Order {
 export interface OrderItem {
   quantity: number
   product: number
-  chosen_options: number[]
+  chosen_options: {
+    name: string
+    value: {
+      name: string
+      id: number
+    }
+  }[]
 }

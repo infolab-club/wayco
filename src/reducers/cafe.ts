@@ -23,4 +23,5 @@ export const getCafe = (id: number) => async (dispatch: Dispatch) => {
   dispatch(setCafe(data))
 }
 
+
 export default cafeSlice.reducer

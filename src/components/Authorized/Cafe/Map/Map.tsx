@@ -29,9 +29,11 @@ const Map = () => {
     dispatch(getCafes())
   }, [dispatch])
 
-  window.navigator.geolocation.getCurrentPosition((position) =>
-    setUserLocation(position.coords),
-  )
+  useEffect(() => {
+    window.navigator.geolocation.getCurrentPosition((position) =>
+      setUserLocation(position.coords),
+    )
+  }, [])
 
   return (
     <div className={styles.wrapper}>

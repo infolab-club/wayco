@@ -11,6 +11,8 @@ import Cafe from './components/Authorized/Cafe'
 import Registration from './components/Unauthorized/Registration/Registration'
 import Cart from './components/Authorized/Cart/Cart'
 import Order from './components/Authorized/Order/Order'
+import Profile from './components/Authorized/Profile/Profile'
+import Success from './components/Authorized/Success/Success'
 
 function App() {
   const { sessionStatus } = useSelector((state: RootState) => state.session)
@@ -19,8 +21,8 @@ function App() {
   const location = useLocation()
 
   useEffect(() => {
-    dispatch(postRefreshToken())
-  }, [dispatch])
+    if (sessionStatus === ReduxStatus.idle) dispatch(postRefreshToken())
+  }, [dispatch, sessionStatus])
 
   return (
     <>
@@ -34,8 +36,14 @@ function App() {
             <Route exact path="/cart">
               <Cart />
             </Route>
+            <Route exact path="/cart/success/:code">
+              <Success />
+            </Route>
             <Route exact path="/cart/:cafeID">
               <Order />
+            </Route>
+            <Route exact path="/profile">
+              <Profile />
             </Route>
             <Redirect to="/cafes" />
           </Switch>

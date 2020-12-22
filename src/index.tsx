@@ -8,12 +8,13 @@ import session from './reducers/session'
 import cafes from './reducers/cafes'
 import cafe from './reducers/cafe'
 import menu from './reducers/menu'
+import orders from './reducers/orders'
 import header from './reducers/header'
 import { Provider } from 'react-redux'
 import './index.scss'
 
 const store = configureStore({
-  reducer: { session, cafes, cafe, header, menu },
+  reducer: { session, cafes, cafe, header, menu, orders },
 })
 
 ReactDOM.render(

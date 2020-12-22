@@ -8,6 +8,7 @@ import { RootState } from '../../../index'
 import getOrders from '../../../helpers/getOrders'
 import { getMenu } from '../../../reducers/menu'
 import { postOrder } from '../../../reducers/orders'
+import { setProductsCount } from '../../../reducers/session'
 
 interface ParamTypes {
   cafeID: string
@@ -27,8 +28,9 @@ const Order = () => {
     dispatch(getMenu(parseInt(cafeID)))
   }, [cafeID, dispatch])
 
-  const handleOrder = () => {
-    dispatch(
+  const handleOrder = async () => {
+    // @ts-ignore
+    const { data } = await dispatch(
       postOrder({
         cafe: cafeID,
         ordered_products: orders[0].ordered_products.map((product) => ({
@@ -39,6 +41,9 @@ const Order = () => {
         })),
       }),
     )
+    sessionStorage.clear()
+    dispatch(setProductsCount(0))
+    history.push(`/cart/success/${data.order_num}`)
   }
 
   return (

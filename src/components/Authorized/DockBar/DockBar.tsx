@@ -42,7 +42,7 @@ const DockBar = () => {
           </Badge>
         }
       />
-      <Menu.Item key="favourites" icon={<HeartOutlined />} />
+      <Menu.Item disabled key="favourites" icon={<HeartOutlined />} />
       <Menu.Item key="profile" icon={<UserOutlined />} />
     </Menu>
   )

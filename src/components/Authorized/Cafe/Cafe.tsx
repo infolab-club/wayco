@@ -25,6 +25,10 @@ const Cafe = () => {
 
   useEffect(() => {
     if (cafeID) dispatch(getCafe(parseInt(cafeID)))
+    else {
+      dispatch(setCafe(undefined))
+      setFullscreenDrawer(false)
+    }
   }, [dispatch, cafeID])
 
   const handleSetFullscreen = (evt: React.MouseEvent) => {
@@ -55,7 +59,6 @@ const Cafe = () => {
         onClose={handleDrawerClose}
         visible={!!cafe}
         getContainer={false}
-        style={{ position: 'absolute' }}
       >
         {/*<Image className={styles.image} src="error" fallback="No image" />*/}
         <h3 className={styles.title}>Инфо</h3>

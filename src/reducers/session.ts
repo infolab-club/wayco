@@ -21,10 +21,21 @@ export const sessionSlice = createSlice({
     setProductsCount: (state, action) => {
       state.productsCount = action.payload
     },
+    resetSession: (state) => {
+      state.sessionStatus = ReduxStatus.idle
+      state.authorized = undefined
+      state.productsCount = undefined
+      localStorage.clear()
+      sessionStorage.clear()
+    },
   },
 })
 
-export const { setStatus, setProductsCount } = sessionSlice.actions
+export const {
+  setStatus,
+  setProductsCount,
+  resetSession,
+} = sessionSlice.actions
 
 export const postRefreshToken = () => async (dispatch: Dispatch) => {
   const token = getToken()

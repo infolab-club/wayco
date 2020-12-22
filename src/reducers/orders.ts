@@ -1,5 +1,42 @@
 import api from '../api'
+import { createSlice, Dispatch } from '@reduxjs/toolkit'
+
+interface InitialState {
+  activeOrders?: unknown[]
+  finishedOrders?: unknown[]
+}
+
+export const ordersSlice = createSlice({
+  name: `orders`,
+  initialState: {} as InitialState,
+  reducers: {
+    setActiveOrders: (state, action) => {
+      state.activeOrders = action.payload
+    },
+    setFinishedOrders: (state, action) => {
+      state.finishedOrders = action.payload
+    },
+  },
+})
+
+const { setActiveOrders, setFinishedOrders } = ordersSlice.actions
 
 export const postOrder = (values: unknown) => async () => {
-  await api.post(`/api/orders`, values)
+  return await api.post(`/api/orders`, values)
 }
+
+export const getActiveOrders = () => async (dispatch: Dispatch) => {
+  const { data } = await api.get(`/api/orders`, {
+    params: { status: `active` },
+  })
+  dispatch(setActiveOrders(data))
+}
+
+export const getFinishedOrders = () => async (dispatch: Dispatch) => {
+  const { data } = await api.get(`/api/orders`, {
+    params: { status: `completed` },
+  })
+  dispatch(setFinishedOrders(data))
+}
+
+export default ordersSlice.reducer

@@ -1,23 +1,36 @@
 import React from 'react'
-import { CSSTransition } from 'react-transition-group'
 import styles from './preloader.module.scss'
 import { ReactComponent as WayCoLogo } from './assets/wayco_logo.svg'
+import { CSSTransition } from 'react-transition-group'
 
-const Preloader = () => {
+interface Props {
+  visible: boolean
+}
+
+const Preloader = (props: Props) => {
+  const { visible } = props
+
+  const transitionProps = {
+    mountOnEnter: true,
+    unmountOnExit: true,
+    in: visible,
+    timeout: 300,
+    classNames: {
+      enter: styles.enter,
+      enterActive: styles.enterActive,
+      exit: styles.exit,
+    },
+  }
+
   return (
-    <CSSTransition
-      in
-      appear
-      timeout={300}
-      classNames={{
-        appear: styles.appear,
-        enter: styles.enter,
-        exit: styles.exit,
-        exitDone: styles.exit,
-      }}
-    >
-      <WayCoLogo className={styles.icon} />
-    </CSSTransition>
+    <>
+      <CSSTransition {...transitionProps}>
+        <div className={styles.mask} />
+      </CSSTransition>
+      <CSSTransition {...transitionProps}>
+        <WayCoLogo className={styles.icon} />
+      </CSSTransition>
+    </>
   )
 }
 

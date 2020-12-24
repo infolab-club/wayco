@@ -6,7 +6,7 @@ import Login from './Unauthorized/Login/Login'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../index'
 import { ReduxStatus } from '../config'
-import { postRefreshToken, setStatus } from '../reducers/session'
+import { postRefreshToken } from '../reducers/session'
 import Cafe from './Authorized/Cafe'
 import Registration from './Unauthorized/Registration/Registration'
 import Cart from './Authorized/Cart/Cart'
@@ -16,7 +16,9 @@ import Success from './Authorized/Success/Success'
 import Preloader from './Preloader/Preloader'
 
 function App() {
-  const { sessionStatus } = useSelector((state: RootState) => state.session)
+  const { sessionStatus } = useSelector(
+    (state: RootState) => state.session,
+  )
 
   const dispatch = useDispatch()
   const location = useLocation()
@@ -24,7 +26,6 @@ function App() {
   useEffect(() => {
     if (sessionStatus === ReduxStatus.idle) {
       dispatch(postRefreshToken())
-      dispatch(setStatus(ReduxStatus.loading))
     }
   }, [dispatch, sessionStatus])
 
@@ -67,7 +68,7 @@ function App() {
           </Switch>
         </Unauthorized>
       )}
-      {sessionStatus === ReduxStatus.loading && <Preloader />}
+      <Preloader visible={sessionStatus === ReduxStatus.loading} />
     </>
   )
 }

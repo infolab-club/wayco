@@ -9,14 +9,24 @@
   transition: opacity 0.3s;
 }
 
-.appear {
+.enter {
   opacity: 0;
 }
 
-.enter {
+.enterActive {
   opacity: 1;
 }
 
 .exit {
   opacity: 0;
+}
+
+.mask {
+  background: #1f1f1f;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity 0.3s;
 }

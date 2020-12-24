@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react'
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
-import Authorized from './components/Authorized/Authorized'
-import Unauthorized from './components/Unauthorized/Unauthorized'
-import Login from './components/Unauthorized/Login/Login'
+import Authorized from './Authorized'
+import Unauthorized from './Unauthorized/Unauthorized'
+import Login from './Unauthorized/Login/Login'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from './index'
-import { ReduxStatus } from './config'
-import { postRefreshToken } from './reducers/session'
-import Cafe from './components/Authorized/Cafe'
-import Registration from './components/Unauthorized/Registration/Registration'
-import Cart from './components/Authorized/Cart/Cart'
-import Order from './components/Authorized/Order/Order'
-import Profile from './components/Authorized/Profile/Profile'
-import Success from './components/Authorized/Success/Success'
+import { RootState } from '../index'
+import { ReduxStatus } from '../config'
+import { postRefreshToken, setStatus } from '../reducers/session'
+import Cafe from './Authorized/Cafe'
+import Registration from './Unauthorized/Registration/Registration'
+import Cart from './Authorized/Cart/Cart'
+import Order from './Authorized/Order/Order'
+import Profile from './Authorized/Profile/Profile'
+import Success from './Authorized/Success/Success'
+import Preloader from './Preloader/Preloader'
 
 function App() {
   const { sessionStatus } = useSelector((state: RootState) => state.session)
@@ -21,7 +22,10 @@ function App() {
   const location = useLocation()
 
   useEffect(() => {
-    if (sessionStatus === ReduxStatus.idle) dispatch(postRefreshToken())
+    if (sessionStatus === ReduxStatus.idle) {
+      dispatch(postRefreshToken())
+      dispatch(setStatus(ReduxStatus.loading))
+    }
   }, [dispatch, sessionStatus])
 
   return (
@@ -63,6 +67,7 @@ function App() {
           </Switch>
         </Unauthorized>
       )}
+      {sessionStatus === ReduxStatus.loading && <Preloader />}
     </>
   )
 }

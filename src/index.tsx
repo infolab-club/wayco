@@ -1,7 +1,7 @@
 import React from 'react'
 import 'antd/dist/antd.less'
 import ReactDOM from 'react-dom'
-import App from './App'
+import App from './components/App'
 import { configureStore } from '@reduxjs/toolkit'
 import { BrowserRouter } from 'react-router-dom'
 import session from './reducers/session'

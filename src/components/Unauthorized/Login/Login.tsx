@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, message } from 'antd'
 import { Link } from 'react-router-dom'
 import styles from './login.module.scss'
 import { useDispatch } from 'react-redux'
@@ -15,8 +15,14 @@ const Login = () => {
   }, [dispatch])
 
   const handleFinish = async (values: unknown) => {
-    setLoading(true)
-    await dispatch(postAuth(values))
+    try {
+      setLoading(true)
+      await dispatch(postAuth(values))
+    } catch (err) {
+      console.error(err)
+      setLoading(false)
+      message.error(`Ошибка входа`)
+    }
   }
 
   return (

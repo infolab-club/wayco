@@ -65,3 +65,32 @@ export interface OrderItem {
     }
   }[]
 }
+
+export interface HistoryOrder {
+  id: number
+  cafe: number
+  order_num: string
+  created_at: string
+  completed_at: null
+  total_sum: string
+  status: string
+  ordered_products: {
+    id: number
+    quantity: number
+    product: {
+      id: number
+      name: string
+      price: string
+      image_src: null
+    }
+    chosen_options: {
+      id: number
+      name: string
+      price: string
+      product_option: {
+        id: number
+        name: string
+      }
+    }[]
+  }[]
+}

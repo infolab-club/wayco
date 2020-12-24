@@ -1,9 +1,10 @@
 import api from '../api'
 import { createSlice, Dispatch } from '@reduxjs/toolkit'
+import { HistoryOrder } from '../types'
 
 interface InitialState {
-  activeOrders?: unknown[]
-  finishedOrders?: unknown[]
+  activeOrders?: HistoryOrder[]
+  finishedOrders?: HistoryOrder[]
 }
 
 export const ordersSlice = createSlice({

@@ -14,11 +14,10 @@ import Order from './Authorized/Order/Order'
 import Profile from './Authorized/Profile/Profile'
 import Success from './Authorized/Success/Success'
 import Preloader from './Preloader/Preloader'
+import CafeOrders from './Authorized/CafeOrders/CafeOrders'
 
 function App() {
-  const { sessionStatus } = useSelector(
-    (state: RootState) => state.session,
-  )
+  const { sessionStatus } = useSelector((state: RootState) => state.session)
 
   const dispatch = useDispatch()
   const location = useLocation()
@@ -49,6 +48,9 @@ function App() {
             </Route>
             <Route exact path="/profile">
               <Profile />
+            </Route>
+            <Route exact path="/cafe">
+              <CafeOrders />
             </Route>
             <Redirect to="/cafes" />
           </Switch>

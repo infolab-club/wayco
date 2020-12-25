@@ -1,9 +1,11 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit'
-import { Cafe } from '../types'
+import { Cafe, HistoryOrder } from '../types'
 import api from '../api'
 
 interface InitialState {
   cafe?: Cafe
+  activeOrders?: HistoryOrder[]
+  finishedOrders?: HistoryOrder[]
 }
 
 export const cafeSlice = createSlice({
@@ -13,15 +15,34 @@ export const cafeSlice = createSlice({
     setCafe: (state, action) => {
       state.cafe = action.payload
     },
+    setActiveOrders: (state, action) => {
+      state.activeOrders = action.payload
+    },
+    setFinishedOrders: (state, action) => {
+      state.finishedOrders = action.payload
+    },
   },
 })
 
-export const { setCafe } = cafeSlice.actions
+export const { setCafe, setFinishedOrders, setActiveOrders } = cafeSlice.actions
 
 export const getCafe = (id: number) => async (dispatch: Dispatch) => {
   const { data } = await api.get(`/api/cafes/${id}`)
   dispatch(setCafe(data))
 }
 
+export const getActiveOrders = () => async (dispatch: Dispatch) => {
+  const { data } = await api.get(`/api/orders`, {
+    params: { status: `active`, cafe: true },
+  })
+  dispatch(setActiveOrders(data))
+}
+
+export const getFinishedOrders = () => async (dispatch: Dispatch) => {
+  const { data } = await api.get(`/api/orders`, {
+    params: { status: `completed`, cafe: true },
+  })
+  dispatch(setFinishedOrders(data))
+}
 
 export default cafeSlice.reducer

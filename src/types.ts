@@ -73,7 +73,7 @@ export interface HistoryOrder {
   created_at: string
   completed_at: null
   total_sum: string
-  status: string
+  status: 'active' | 'ready' | 'claimed' | 'unclaimed'
   ordered_products: {
     id: number
     quantity: number

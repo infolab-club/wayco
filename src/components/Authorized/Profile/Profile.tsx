@@ -25,7 +25,7 @@ const Profile = () => {
     >
       <List>
         {order.ordered_products.map((product) => (
-          <List.Item>
+          <List.Item key={product.id}>
             <p className={styles.highlighted}>
               {product.product.name}
               {!!parseInt(product.product.price) &&
@@ -33,7 +33,7 @@ const Profile = () => {
               , {product.quantity} шт
             </p>
             {product.chosen_options.map((option) => (
-              <p>
+              <p key={option.id}>
                 {option.product_option.name}: {option.name}
                 {!!parseInt(option.price) && `, ${parseInt(option.price)}₽`}
               </p>

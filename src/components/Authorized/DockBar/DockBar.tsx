@@ -5,6 +5,7 @@ import {
   ShoppingCartOutlined,
   HeartOutlined,
   UserOutlined,
+  CoffeeOutlined,
 } from '@ant-design/icons'
 import styles from './dockBar.module.scss'
 import { useHistory } from 'react-router-dom'
@@ -14,7 +15,9 @@ import { setProductsCount } from '../../../reducers/session'
 import getOrders from '../../../helpers/getOrders'
 
 const DockBar = () => {
-  const { productsCount } = useSelector((state: RootState) => state.session)
+  const { productsCount, groups } = useSelector(
+    (state: RootState) => state.session,
+  )
 
   const history = useHistory()
   const dispatch = useDispatch()
@@ -42,6 +45,9 @@ const DockBar = () => {
           </Badge>
         }
       />
+      {groups?.includes(`employees`) && (
+        <Menu.Item key="cafe" icon={<CoffeeOutlined />} />
+      )}
       <Menu.Item disabled key="favourites" icon={<HeartOutlined />} />
       <Menu.Item key="profile" icon={<UserOutlined />} />
     </Menu>

@@ -72,6 +72,7 @@ export const postRefreshToken = () => async (dispatch: Dispatch) => {
 export const postAuth = (values: unknown) => async (dispatch: Dispatch) => {
   const { data } = await api.post(`/accounts/token`, values)
   api.defaults.headers.Authorization = `Bearer ${data.access}`
+  await getGroups()(dispatch)
   dispatch(setStatus(ReduxStatus.success))
   localStorage.setItem(`token`, JSON.stringify(data))
 }

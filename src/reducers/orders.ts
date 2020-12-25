@@ -40,4 +40,8 @@ export const getFinishedOrders = () => async (dispatch: Dispatch) => {
   dispatch(setFinishedOrders(data))
 }
 
+export const patchOrder = (id: number, values: unknown) => async () => {
+  await api.patch(`/api/orders/${id}`, values)
+}
+
 export default ordersSlice.reducer

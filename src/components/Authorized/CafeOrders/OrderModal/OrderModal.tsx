@@ -34,10 +34,10 @@ const OrderModal = (props: Props) => {
       visible={visible}
       onCancel={() => setVisible(false)}
       footer={[
-        <Button key="cancel" onClick={() => setVisible(false)}>
+        <Button key="cancel" size="large" onClick={() => setVisible(false)}>
           Отмена
         </Button>,
-        <Button key="save" type="primary" onClick={form.submit}>
+        <Button key="save" type="primary" size="large" onClick={form.submit}>
           Сохранить
         </Button>,
       ]}

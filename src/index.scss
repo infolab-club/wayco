@@ -5,3 +5,11 @@
 body {
   background: #1f1f1f;
 }
+
+.ant-page-header {
+  background: #1f1f1f;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid #303030;
+}

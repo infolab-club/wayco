@@ -54,7 +54,7 @@ const Item = (props: Props) => {
       visible={visible}
       onCancel={() => setVisible(false)}
       footer={[
-        <Button type="primary" key="add" onClick={form.submit}>
+        <Button type="primary" key="add" size="large" onClick={form.submit}>
           Добавить в корзину
         </Button>,
       ]}

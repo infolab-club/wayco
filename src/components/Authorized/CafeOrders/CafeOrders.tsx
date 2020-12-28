@@ -7,6 +7,7 @@ import { getActiveOrders, getFinishedOrders } from '../../../reducers/cafe'
 import { RootState } from '../../../index'
 import { HistoryOrder } from '../../../types'
 import OrderModal from './OrderModal/OrderModal'
+import { useHistory } from 'react-router-dom'
 
 const orderStatusToText = {
   active: `Активен`,
@@ -34,6 +35,7 @@ const CafeOrders = () => {
   )
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const [modalVisible, setModalVisible] = useState(false)
   const [order, setOrder] = useState<HistoryOrder>()
@@ -83,14 +85,19 @@ const CafeOrders = () => {
         className={styles.header}
         extra={
           groups?.includes(`cafe_admins`) && (
-            <SettingOutlined className={styles.settings} />
+            <SettingOutlined
+              className={styles.settings}
+              onClick={() => history.push(`/cafe/manage`)}
+            />
           )
         }
       />
       <div className={styles.wrapper}>
-        {!!activeOrders?.length && <h4>Активные заказы</h4>}
+        <h4>Активные заказы</h4>
+        {activeOrders && !activeOrders?.length && `Активных заказов нет`}
         {activeOrders?.map(renderOrder).reverse()}
-        {!!finishedOrders?.length && <h4>Завершённые заказы</h4>}
+        <h4>Завершённые заказы</h4>
+        {finishedOrders && !finishedOrders?.length && `Завершённых заказов нет`}
         {finishedOrders?.map(renderOrder).reverse()}
       </div>
       <OrderModal

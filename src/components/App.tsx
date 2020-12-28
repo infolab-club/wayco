@@ -15,6 +15,7 @@ import Profile from './Authorized/Profile/Profile'
 import Success from './Authorized/Success/Success'
 import Preloader from './Preloader/Preloader'
 import CafeOrders from './Authorized/CafeOrders/CafeOrders'
+import ManageCafe from './Authorized/ManageCafe/ManageCafe'
 
 function App() {
   const { sessionStatus } = useSelector((state: RootState) => state.session)
@@ -51,6 +52,9 @@ function App() {
             </Route>
             <Route exact path="/cafe">
               <CafeOrders />
+            </Route>
+            <Route exact path="/cafe/manage">
+              <ManageCafe />
             </Route>
             <Redirect to="/cafes" />
           </Switch>

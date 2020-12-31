@@ -5,7 +5,7 @@ import { getCafe, putCafe } from '../../../../reducers/cafe'
 import { Button, Form, Input, Upload } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 
-const Info = () => {
+const EditInfo = () => {
   const { cafeID } = useSelector((state: RootState) => state.session)
   const { cafe } = useSelector((state: RootState) => state.cafe)
 
@@ -67,4 +67,4 @@ const Info = () => {
   )
 }
 
-export default Info
+export default EditInfo

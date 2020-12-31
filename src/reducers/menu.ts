@@ -34,4 +34,12 @@ export const getMenuItem = (cafeID: number, itemID: number) => async (
   dispatch(setMenuItem(data))
 }
 
+export const putMenuItem = (cafeID: number, itemID: number, values: unknown) => async (
+  dispatch: Dispatch,
+) => {
+  console.log(values)
+  const { data } = await api.put(`/api/cafes/${cafeID}/menu/${itemID}`, values)
+  dispatch(setMenuItem(data))
+}
+
 export default menuSlice.reducer

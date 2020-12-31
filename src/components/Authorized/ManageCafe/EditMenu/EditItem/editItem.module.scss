@@ -1,0 +1,12 @@
+.optionsWrapper {
+  display: grid;
+  grid-gap: 16px;
+
+  :global(.ant-badge) {
+    :global(.anticon-close) {
+      padding: 4px;
+      background: #ff4d4f;
+      border-radius: 50%;
+    }
+  }
+}

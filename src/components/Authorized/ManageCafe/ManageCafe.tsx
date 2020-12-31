@@ -2,7 +2,8 @@ import React from 'react'
 import { PageHeader } from 'antd'
 import { useHistory } from 'react-router-dom'
 import styles from './manageCafe.module.scss'
-import Info from './Info/Info'
+import EditInfo from './EditInfo/EditInfo'
+import EditMenu from './EditMenu/EditMenu'
 
 const ManageCafe = () => {
   const history = useHistory()
@@ -15,8 +16,9 @@ const ManageCafe = () => {
       />
       <div className={styles.wrapper}>
         <h4>Информация</h4>
-        <Info />
+        <EditInfo />
         <h4>Меню</h4>
+        <EditMenu />
       </div>
     </>
   )

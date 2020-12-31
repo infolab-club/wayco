@@ -45,4 +45,11 @@ export const getFinishedOrders = () => async (dispatch: Dispatch) => {
   dispatch(setFinishedOrders(data))
 }
 
+export const putCafe = (cafeID: number, values: unknown) => async (
+  dispatch: Dispatch,
+) => {
+  const { data } = await api.put(`/api/cafes/${cafeID}`, values)
+  dispatch(setCafe(data))
+}
+
 export default cafeSlice.reducer

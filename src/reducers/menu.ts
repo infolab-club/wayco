@@ -34,11 +34,27 @@ export const getMenuItem = (cafeID: number, itemID: number) => async (
   dispatch(setMenuItem(data))
 }
 
-export const putMenuItem = (cafeID: number, itemID: number, values: unknown) => async (
+export const putMenuItem = (
+  cafeID: number,
+  itemID: number,
+  values: unknown,
+) => async (dispatch: Dispatch) => {
+  const { data } = await api.put(`/api/cafes/${cafeID}/menu/${itemID}`, values)
+  dispatch(setMenuItem(data))
+}
+
+export const deleteMenuItem = (cafeID: number, itemID: number) => async (
   dispatch: Dispatch,
 ) => {
-  console.log(values)
-  const { data } = await api.put(`/api/cafes/${cafeID}/menu/${itemID}`, values)
+  await api.delete(`/api/cafes/${cafeID}/menu/${itemID}`)
+  dispatch(setMenuItem(undefined))
+}
+
+export const postMenuItem = (
+  cafeID: number,
+  values: unknown,
+) => async (dispatch: Dispatch) => {
+  const { data } = await api.post(`/api/cafes/${cafeID}/menu`, values)
   dispatch(setMenuItem(data))
 }
 

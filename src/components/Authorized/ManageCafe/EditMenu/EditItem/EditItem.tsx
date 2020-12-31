@@ -1,10 +1,15 @@
 import React, { Dispatch, useEffect } from 'react'
-import { Button, Form, Input, InputNumber, Modal, Switch } from 'antd'
+import { Button, Divider, Form, Input, InputNumber, Modal, Switch } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../../../index'
-import { getMenu, getMenuItem, putMenuItem } from '../../../../../reducers/menu'
-import { OrderItem } from '../../../../../types'
+import {
+  deleteMenuItem,
+  getMenu,
+  getMenuItem,
+  postMenuItem,
+  putMenuItem,
+} from '../../../../../reducers/menu'
 import EditOption from './EditOption/EditOption'
 import styles from './editItem.module.scss'
 
@@ -13,10 +18,11 @@ interface Props {
   itemID?: number
   visible: boolean
   setVisible: Dispatch<boolean>
+  modalMode: 'adding' | 'editing'
 }
 
 const EditItem = (props: Props) => {
-  const { cafeID, itemID, visible, setVisible } = props
+  const { cafeID, itemID, visible, setVisible, modalMode } = props
   const { menuItem } = useSelector((state: RootState) => state.menu)
 
   const dispatch = useDispatch()
@@ -27,14 +33,23 @@ const EditItem = (props: Props) => {
   }, [cafeID, dispatch, itemID])
 
   useEffect(() => {
-    if (menuItem) form.resetFields()
-    if (!visible) form.resetFields()
-  }, [form, menuItem, visible])
+    if (menuItem || !visible || modalMode) form.resetFields()
+  }, [form, menuItem, modalMode, visible])
 
-  const handleSubmit = async (values: OrderItem) => {
-    if (cafeID && itemID) {
+  const handleSubmit = async (values: unknown) => {
+    if (!cafeID) return
+    if (modalMode === `editing` && itemID)
       await dispatch(putMenuItem(cafeID, itemID, values))
-      dispatch(getMenu(cafeID))
+    if (modalMode === `adding`) await dispatch(postMenuItem(cafeID, values))
+    await dispatch(getMenu(cafeID))
+    setVisible(false)
+  }
+
+  const handleDelete = async () => {
+    if (cafeID && itemID) {
+      await dispatch(deleteMenuItem(cafeID, itemID))
+      await dispatch(getMenu(cafeID))
+      setVisible(false)
     }
   }
 
@@ -49,7 +64,11 @@ const EditItem = (props: Props) => {
         </Button>,
       ]}
     >
-      <Form form={form} onFinish={handleSubmit} initialValues={menuItem}>
+      <Form
+        form={form}
+        onFinish={handleSubmit}
+        initialValues={modalMode === `editing` ? menuItem : undefined}
+      >
         <Form.Item label="Название" name="name">
           <Input size="large" />
         </Form.Item>
@@ -84,6 +103,14 @@ const EditItem = (props: Props) => {
           </Form.List>
         </div>
       </Form>
+      {modalMode !== `adding` && (
+        <>
+          <Divider />
+          <Button block danger size="large" onClick={handleDelete}>
+            Удалить продукт
+          </Button>
+        </>
+      )}
     </Modal>
   )
 }

@@ -60,8 +60,8 @@ const Map = () => {
           <Marker
             key={cafe.id}
             type="cafe"
-            lat={parseInt(cafe.latitude)}
-            lng={parseInt(cafe.longitude)}
+            lat={parseFloat(cafe.latitude)}
+            lng={parseFloat(cafe.longitude)}
             onClick={() => history.push(`/cafes/${cafe.id}`)}
           />
         ))}

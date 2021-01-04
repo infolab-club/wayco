@@ -1,7 +1,8 @@
-import React, { Fragment } from 'react'
-import { Card, Form, Input, Button, InputNumber, Divider, Switch } from 'antd'
+import React  from 'react'
+import { Card, Form, Input, Button } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { FormListFieldData } from 'antd/es/form/FormList'
+import EditChoice from './EditChoice/EditChoice'
 
 interface Props {
   onRemove: (index: number | number[]) => void
@@ -32,52 +33,13 @@ const EditOption = (props: Props) => {
         <Form.List name={[field.name, `choices`]}>
           {(fields, { add, remove }) => (
             <>
-              {fields.map((field) => (
-                <Fragment key={field.key}>
-                  <Form.Item
-                    {...field}
-                    label="Название"
-                    name={[field.name, `name`]}
-                    fieldKey={[field.fieldKey, 'name']}
-                    key="name"
-                  >
-                    <Input placeholder="Клубничный" />
-                  </Form.Item>
-                  <Form.Item
-                    {...field}
-                    label="Цена"
-                    name={[field.name, `price`]}
-                    fieldKey={[field.fieldKey, 'price']}
-                    key="price"
-                  >
-                    <InputNumber />
-                  </Form.Item>
-                  <Form.Item
-                    {...field}
-                    label="По умолчанию"
-                    name={[field.name, `default`]}
-                    fieldKey={[field.fieldKey, 'default']}
-                    key="default"
-                    valuePropName="checked"
-                  >
-                    <Switch defaultChecked={false} />
-                  </Form.Item>
-                  <Form.Item
-                    {...field}
-                    label="В наличии"
-                    name={[field.name, `available`]}
-                    fieldKey={[field.fieldKey, 'available']}
-                    key="available"
-                    valuePropName="checked"
-                  >
-                    <Switch defaultChecked={false} />
-                  </Form.Item>
-                  <Button danger onClick={() => remove(field.name)}>
-                    Убрать вариант
-                  </Button>
-                  <Divider />
-                </Fragment>
-              ))}
+              {fields.length ? (
+                fields.map((field) => (
+                  <EditChoice field={field} remove={remove} key={field.key} />
+                ))
+              ) : (
+                <EditChoice field={field} remove={remove} />
+              )}
               <Button
                 block
                 type="dashed"

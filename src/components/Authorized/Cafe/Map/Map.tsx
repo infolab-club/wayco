@@ -47,7 +47,7 @@ const Map = () => {
           lat: userLocation.latitude || 59.9385849,
           lng: userLocation.longitude || 30.3147994,
         }}
-        defaultZoom={5}
+        defaultZoom={12}
       >
         {userLocation.accuracy && (
           <Marker

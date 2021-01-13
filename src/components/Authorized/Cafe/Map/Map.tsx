@@ -38,7 +38,7 @@ const Map = () => {
   return (
     <div className={styles.wrapper}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: MAPS_API_KEY }}
+        bootstrapURLKeys={{ key: MAPS_API_KEY as string }}
         options={{
           fullscreenControl: false,
           styles: MapsStyle,

@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { BASE_URL } from './config'
-import getToken from './helpers/getToken'
+import { BASE_URL } from 'config'
+import getToken from 'helpers/getToken'
 import { message } from 'antd'
 
 const token = getToken()

@@ -2,7 +2,7 @@ import React from 'react'
 import { PageHeader } from 'antd'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { RootState } from '../../index'
+import { RootState } from 'index'
 
 interface Props {
   children?: React.ReactNode

@@ -1,12 +1,12 @@
 import React, { Dispatch, useEffect } from 'react'
 import { Button, Form, InputNumber, Modal, Select } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../../../index'
-import { getMenuItem } from '../../../../../reducers/menu'
-import { setProductsCount } from '../../../../../reducers/session'
-import { OrderItem } from '../../../../../types'
-import addOrderItem from '../../../../../helpers/addOrderItem'
-import getOrders from '../../../../../helpers/getOrders'
+import { RootState } from 'index'
+import { getMenuItem } from 'reducers/menu'
+import { setProductsCount } from 'reducers/session'
+import { OrderItem } from 'types'
+import addOrderItem from 'helpers/addOrderItem'
+import getOrders from 'helpers/getOrders'
 
 interface Props {
   cafeID?: number

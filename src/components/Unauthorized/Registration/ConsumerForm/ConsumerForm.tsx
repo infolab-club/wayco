@@ -1,7 +1,7 @@
 import React  from 'react'
 import { Button, Form, Input } from 'antd'
 import { useDispatch } from 'react-redux'
-import { postUniqueLogin } from '../../../../reducers/registration'
+import { postUniqueLogin } from 'reducers/registration'
 
 const ConsumerForm = () => {
   const dispatch = useDispatch()

@@ -3,12 +3,12 @@ import { Button, Card, PageHeader } from 'antd'
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './order.module.scss'
-import { getCafe } from '../../../reducers/cafe'
-import { RootState } from '../../../index'
-import getOrders from '../../../helpers/getOrders'
-import { getMenu } from '../../../reducers/menu'
-import { postOrder } from '../../../reducers/orders'
-import { setProductsCount } from '../../../reducers/session'
+import { getCafe } from 'reducers/cafe'
+import { RootState } from 'index'
+import getOrders from 'helpers/getOrders'
+import { getMenu } from 'reducers/menu'
+import { postOrder } from 'reducers/orders'
+import { setProductsCount } from 'reducers/session'
 
 interface ParamTypes {
   cafeID: string

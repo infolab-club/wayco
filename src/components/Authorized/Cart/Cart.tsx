@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './cart.module.scss'
 import { Card, Empty, PageHeader } from 'antd'
-import { getCafes } from '../../../reducers/cafes'
+import { getCafes } from 'reducers/cafes'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../index'
-import getOrders from '../../../helpers/getOrders'
+import { RootState } from 'index'
+import getOrders from 'helpers/getOrders'
 
 const Cart = () => {
   const { cafes } = useSelector((state: RootState) => state.cafes)

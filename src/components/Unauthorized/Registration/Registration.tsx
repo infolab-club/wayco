@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Form, message, Tabs } from 'antd'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { setHeader } from '../../../reducers/header'
+import { setHeader } from 'reducers/header'
 import ConsumerForm from './ConsumerForm/ConsumerForm'
 import styles from './registration.module.scss'
 import EmployeeForm from './EmployeeForm/EmployeeForm'
-import { postConsumer, postEmployee } from '../../../reducers/registration'
+import { postConsumer, postEmployee } from 'reducers/registration'
 
 const Registration = () => {
   const dispatch = useDispatch()

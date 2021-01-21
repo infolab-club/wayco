@@ -1,6 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit'
-import { Menu, MenuItem } from '../types'
-import api from '../api'
+import { Menu, MenuItem } from 'types'
+import api from 'api'
 
 interface InitialState {
   menu?: Menu

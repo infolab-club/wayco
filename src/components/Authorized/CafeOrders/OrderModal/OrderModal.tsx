@@ -1,9 +1,9 @@
 import React, { Dispatch, useEffect } from 'react'
 import { Button, Form, Modal, Select } from 'antd'
-import { HistoryOrder } from '../../../../types'
+import { HistoryOrder } from 'types'
 import { useDispatch } from 'react-redux'
-import { patchOrder } from '../../../../reducers/orders'
-import { getActiveOrders, getFinishedOrders } from '../../../../reducers/cafe'
+import { patchOrder } from 'reducers/orders'
+import { getActiveOrders, getFinishedOrders } from 'reducers/cafe'
 
 interface Props {
   visible: boolean

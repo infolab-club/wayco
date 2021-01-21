@@ -3,8 +3,8 @@ import { Button, Form, Input, message } from 'antd'
 import { Link } from 'react-router-dom'
 import styles from './login.module.scss'
 import { useDispatch } from 'react-redux'
-import { setHeader } from '../../../reducers/header'
-import { postAuth } from '../../../reducers/session'
+import { setHeader } from 'reducers/header'
+import { postAuth } from 'reducers/session'
 
 const Login = () => {
   const dispatch = useDispatch()

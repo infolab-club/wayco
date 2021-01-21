@@ -1,7 +1,7 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit'
-import api from '../api'
-import { ReduxStatus } from '../config'
-import getToken from '../helpers/getToken'
+import api from 'api'
+import { ReduxStatus } from 'config'
+import getToken from 'helpers/getToken'
 
 interface InitialState {
   sessionStatus: ReduxStatus

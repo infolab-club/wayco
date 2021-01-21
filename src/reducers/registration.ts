@@ -1,4 +1,4 @@
-import api from '../api'
+import api from 'api'
 
 export const postConsumer = (values: unknown) => async () =>
   await api.post(`/accounts/consumers`, values)

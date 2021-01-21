@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../../index'
-import { getCafe, putCafe } from '../../../../reducers/cafe'
+import { RootState } from 'index'
+import { getCafe, putCafe } from 'reducers/cafe'
 import { Button, Form, Input, Upload } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 

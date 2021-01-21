@@ -1,6 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit'
-import { Cafe, HistoryOrder } from '../types'
-import api from '../api'
+import { Cafe, HistoryOrder } from 'types'
+import api from 'api'
 
 interface InitialState {
   cafe?: Cafe

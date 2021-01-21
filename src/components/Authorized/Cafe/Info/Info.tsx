@@ -3,7 +3,7 @@ import { Rate, Typography } from 'antd'
 import { EnvironmentOutlined, FileTextOutlined } from '@ant-design/icons'
 import styles from '../cafe.module.scss'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../../../index'
+import { RootState } from 'index'
 
 const Info = () => {
   const { cafe } = useSelector((state: RootState) => state.cafe)

@@ -1,4 +1,4 @@
-import { Order, OrderItem } from '../types'
+import { Order, OrderItem } from 'types'
 import getOrders from './getOrders'
 
 const addOrderItem = (cafeID: number, orderItem: OrderItem) => {

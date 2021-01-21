@@ -10,9 +10,9 @@ import {
 import styles from './dockBar.module.scss'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../index'
-import { setProductsCount } from '../../../reducers/session'
-import getOrders from '../../../helpers/getOrders'
+import { RootState } from 'index'
+import { setProductsCount } from 'reducers/session'
+import getOrders from 'helpers/getOrders'
 
 const DockBar = () => {
   const { productsCount, groups } = useSelector(

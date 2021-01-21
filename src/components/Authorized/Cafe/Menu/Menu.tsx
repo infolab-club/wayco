@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Card } from 'antd'
 import styles from './menu.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../../index'
-import { getMenu } from '../../../../reducers/menu'
+import { RootState } from 'index'
+import { getMenu } from 'reducers/menu'
 import Item from './Item/Item'
 
 const Menu = () => {

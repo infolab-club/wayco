@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 import { Button, Card, List, PageHeader } from 'antd'
 import styles from './profile.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { getActiveOrders, getFinishedOrders } from '../../../reducers/orders'
-import { resetSession } from '../../../reducers/session'
-import { RootState } from '../../../index'
-import { HistoryOrder } from '../../../types'
+import { getActiveOrders, getFinishedOrders } from 'reducers/orders'
+import { resetSession } from 'reducers/session'
+import { RootState } from 'index'
+import { HistoryOrder } from 'types'
 
 const Profile = () => {
   const { activeOrders, finishedOrders } = useSelector(

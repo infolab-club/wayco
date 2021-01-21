@@ -2,14 +2,14 @@ import React, { Dispatch, useEffect } from 'react'
 import { Button, Divider, Form, Input, InputNumber, Modal, Switch } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../../../index'
+import { RootState } from 'index'
 import {
   deleteMenuItem,
   getMenu,
   getMenuItem,
   postMenuItem,
   putMenuItem,
-} from '../../../../../reducers/menu'
+} from 'reducers/menu'
 import EditOption from './EditOption/EditOption'
 import styles from './editItem.module.scss'
 

@@ -1,6 +1,6 @@
 import api from '../api'
 import { createSlice, Dispatch } from '@reduxjs/toolkit'
-import { HistoryOrder } from '../types'
+import { HistoryOrder } from 'types'
 
 interface InitialState {
   activeOrders?: HistoryOrder[]
